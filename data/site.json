@@ -146,7 +146,7 @@
   "maintenanceNote": "每月保養 HK$280–480。輕微修訂、備份、保安更新。",
   "case": {
     "heading": "案例與樣板",
-    "p1": "以下包括已上線商戶網站，以及電商易製作的行業樣板示範，方便您了解不同業態與套餐定位。",
+    "p1": "以下包括已上線商戶網站，以及電商易製作的行業樣板示範（Starter 形象站等），方便您了解不同業態與套餐定位。",
     "p2": "標示「樣板示範」者為虛構品牌，僅供展示版面與功能，並非已簽約客戶。",
     "buttonLabel": "開啟 Wonderland JP",
     "url": "https://wonderlandjpjp.com",
@@ -205,6 +205,14 @@
       "body": "Starter 形象網站樣板（HK$3,800 級）。虛構品牌：私人教練／團體班／拳擊泰拳套餐、營養顧問加購、前後對比示範與 WhatsApp 查詢。非真實營業、非已簽約客戶。",
       "urlLabel": "eshopeasyhk.github.io/fitness-coach-demo",
       "url": "https://eshopeasyhk.github.io/fitness-coach-demo/",
+      "demo": true
+    },
+    {
+      "tag": "樣板示範 · Starter",
+      "title": "沐泰軒 MooThai｜按摩店",
+      "body": "虛構品牌 Starter 樣板：中泰混合治癒風、三張套票主推＋完整價錢牌、WhatsApp 查詢。非真實營業、非已簽約客戶。",
+      "urlLabel": "eshopeasyhk.github.io/massage-shop-demo",
+      "url": "https://eshopeasyhk.github.io/massage-shop-demo/",
       "demo": true
     }
   ]
