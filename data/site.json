@@ -25,7 +25,9 @@
     "phoneDigits": "46726613",
     "phoneDisplay": "4672 6613",
     "waDefaultText": "您好，想了解電商易服務",
-    "tagline": "香港 · 中小企網站及 iOS App"
+    "tagline": "香港 · 中小企網站及 iOS App",
+    "facebookUrl": "https://www.facebook.com/eshopeasyhk",
+    "facebookLabel": "Facebook 專頁"
   },
   "hero": {
     "eyebrow": "Hong Kong · 中小企網站及 iOS App",
@@ -81,14 +83,14 @@
       "price": "3,800",
       "pricePrefix": "",
       "meta": "1–5 頁",
+      "featured": false,
       "bullets": [
         "流動裝置優先版面",
         "服務／介紹內容",
         "WhatsApp 聯絡",
         "上線及基本教學"
       ],
-      "waText": "您好，想查詢 Starter 形象網站 HK$3800",
-      "featured": true
+      "waText": "您好，想查詢 Starter 形象網站 HK$3800"
     },
     {
       "id": "business",
@@ -97,16 +99,15 @@
       "price": "9,800",
       "pricePrefix": "",
       "meta": "8–12 頁 · 基本 SEO · WhatsApp",
+      "featured": true,
       "badge": "最常查詢",
       "bullets": [
         "完整結構及導覽",
-        "提供後台登入，可隨時自行調整內容",
         "基本搜尋引擎設定",
         "WhatsApp 即時查詢",
         "適合穩定經營的店舖"
       ],
-      "waText": "您好，想查詢 Business 商務網站 HK$9800",
-      "featured": false
+      "waText": "您好，想查詢 Business 商務網站 HK$9800"
     },
     {
       "id": "shop",
@@ -115,14 +116,14 @@
       "price": "19,800",
       "pricePrefix": "",
       "meta": "產品目錄 · 下單或預約",
+      "featured": false,
       "bullets": [
         "產品或服務目錄",
         "下單或預約時段",
         "按您店舖的實際做法製作",
         "金流／系統另議"
       ],
-      "waText": "您好，想查詢網店／預約 HK$19800",
-      "featured": false
+      "waText": "您好，想查詢網店／預約 HK$19800"
     },
     {
       "id": "ios",
@@ -131,14 +132,14 @@
       "price": "24,800",
       "pricePrefix": "低至",
       "meta": "視專案複雜程度面議",
+      "featured": false,
       "bullets": [
         "介面設計",
         "應用程式製作",
         "App Store 上架",
         "可獨立委託或與網站一併進行"
       ],
-      "waText": "您好，想查詢 iOS App 設計、製作及上架，價格低至 HK$24800",
-      "featured": false
+      "waText": "您好，想查詢 iOS App 設計、製作及上架，價格低至 HK$24800"
     }
   ],
   "maintenanceNote": "每月保養 HK$280–480。輕微修訂、備份、保安更新。",
@@ -167,8 +168,8 @@
       "a": "形象網站 HK$3,800；商務網站 HK$9,800；網店／預約 HK$19,800。iOS App 視專案複雜程度面議，價格低至 HK$24,800，涵蓋設計、製作及上架。每月保養 HK$280–480。"
     },
     {
-      "q": "哪個套餐適合我？",
-      "a": "不少商戶首先需要的是清晰的網上門面：地址、服務、價格、WhatsApp作為宣傳。如果目的是這個的話starter計劃已經足夠。\n網店及預約等等更高級配置可按實際需要加入。"
+      "q": "是否必須製作網店？",
+      "a": "不必。不少商戶首先需要的是清晰的網上門面：地址、服務、價格、WhatsApp。網店及預約可按實際需要加入。"
     },
     {
       "q": "日後可否自行修改文字及圖片？",

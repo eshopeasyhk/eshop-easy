@@ -360,6 +360,13 @@ a { text-decoration: none; }
 
 .btn:hover { transform: translateY(-1px); }
 
+.btn-fb {
+  background: #1877f2;
+  color: #fff;
+  border: 1px solid #1877f2;
+}
+.btn-fb:hover { filter: brightness(1.06); }
+
 .btn-wa {
   background: var(--wa);
   color: var(--white);

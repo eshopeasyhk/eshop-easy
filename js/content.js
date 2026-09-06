@@ -101,6 +101,19 @@
       }
     });
     setText("[data-cms='phoneDisplay']", contact.phoneDisplay || contact.phoneDigits);
+    if (contact.facebookUrl) {
+      document.querySelectorAll("[data-cms='facebookLink'], a[data-cms-fb]").forEach(function (a) {
+        a.href = contact.facebookUrl;
+      });
+    }
+    if (contact.facebookLabel) {
+      setText("[data-cms='facebookLabel']", contact.facebookLabel);
+      document.querySelectorAll("[data-cms='facebookLink']").forEach(function (a) {
+        if (a.classList.contains("btn") || a.classList.contains("btn-fb")) {
+          a.textContent = contact.facebookLabel;
+        }
+      });
+    }
   }
 
   function renderPackages(packages, contact) {
