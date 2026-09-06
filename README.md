@@ -34,3 +34,12 @@ python3 -m http.server 8080
 - 核心服務並重：網站設計與建構；iOS App 設計、製作及上架服務。
 - 作品案例僅列出已上線的 [Wonderland JP](https://wonderlandjpjp.com)（wonderlandjpjp.com），不展示虛構評價或標誌。
 - 查詢熱線 WhatsApp：46726613。
+
+
+## 內容後台（簡易 CMS）
+
+- 後台網址：https://eshopeasyhk.github.io/eshop-easy/admin/
+- 可改：主題色、文案、聯絡電話、套餐、常見問題
+- 登入：用 `eshopeasyhk` 帳戶的 GitHub Personal Access Token（classic，需 `repo`）
+- 儲存後會更新 `data/site.json` 並推上 `main`；GitHub Pages 約 1–2 分鐘刷新
+- Token 只存在瀏覽器 sessionStorage，關閉分頁即清除；請勿把 Token 貼到公開地方

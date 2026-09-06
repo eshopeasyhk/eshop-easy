@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>電商易內容後台</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <style>
+    :root { --admin-max: 920px; }
+    body.admin { background: var(--paper); }
+    .admin-wrap { width: min(var(--admin-max), calc(100% - 2rem)); margin: 0 auto; padding: 1.5rem 0 4rem; }
+    .admin-top { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+    .admin-top h1 { margin:0; font-family:var(--serif); font-size:1.6rem; }
+    .panel { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:1.25rem 1.35rem; margin-bottom:1rem; }
+    .panel h2 { margin:0 0 .85rem; font-size:1.05rem; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+    @media (max-width:720px){ .grid-2 { grid-template-columns:1fr; } }
+    label { display:block; font-size:.82rem; color:var(--muted); margin-bottom:.25rem; }
+    input[type=text], input[type=url], input[type=color], input[type=password], textarea, select {
+      width:100%; box-sizing:border-box; border:1px solid var(--line); border-radius:.65rem;
+      padding:.55rem .7rem; font:inherit; background:#fff; color:var(--ink);
+    }
+    textarea { min-height:5.5rem; resize:vertical; }
+    .field { margin-bottom:.75rem; }
+    .row-actions { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem; }
+    .btn-admin { border:0; border-radius:999px; padding:.55rem 1.1rem; font:inherit; font-weight:600; cursor:pointer; }
+    .btn-primary { background:var(--teal); color:#fff; }
+    .btn-primary:hover { background:var(--teal-dark); }
+    .btn-soft { background:var(--sand); color:var(--ink); }
+    .btn-danger { background:#8b2e2e; color:#fff; }
+    .status { font-size:.9rem; color:var(--muted); min-height:1.3em; }
+    .status.ok { color:var(--teal-dark); }
+    .status.err { color:#8b2e2e; }
+    .login-box { max-width:420px; margin:12vh auto; }
+    .hint { font-size:.85rem; color:var(--muted); line-height:1.55; }
+    .pkg { border:1px dashed var(--line); border-radius:.9rem; padding:1rem; margin-bottom:.85rem; }
+    .pkg h3 { margin:0 0 .6rem; font-size:1rem; }
+    .hidden { display:none !important; }
+    .color-row { display:flex; gap:.5rem; align-items:center; }
+    .color-row input[type=color] { width:3rem; height:2.4rem; padding:0; border:none; background:transparent; }
+    .tabs { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; }
+    .tabs button { border:1px solid var(--line); background:#fff; border-radius:999px; padding:.4rem .9rem; font:inherit; cursor:pointer; }
+    .tabs button.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+    .faq-item { border-top:1px solid var(--line); padding-top:.75rem; margin-top:.75rem; }
+  </style>
+</head>
+<body class="admin">
+  <div class="admin-wrap">
+    <section id="loginView" class="panel login-box">
+      <h1>電商易內容後台</h1>
+      <p class="hint">用 GitHub Personal Access Token 登入（帳戶 <strong>eshopeasyhk</strong>，權限需含 <code>repo</code>）。Token 只存於此瀏覽器的 sessionStorage，關閉分頁後清除。</p>
+      <div class="field">
+        <label for="token">GitHub PAT</label>
+        <input id="token" type="password" autocomplete="off" placeholder="ghp_…">
+      </div>
+      <div class="row-actions">
+        <button class="btn-admin btn-primary" type="button" id="loginBtn">登入</button>
+        <a class="btn-admin btn-soft" href="../">返回網站</a>
+      </div>
+      <p class="status" id="loginStatus"></p>
+      <p class="hint">建立 Token：GitHub → Settings → Developer settings → Personal access tokens → Classic → 剔 <code>repo</code>。</p>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="admin-top">
+        <div>
+          <h1>內容後台</h1>
+          <p class="status" id="userLine"></p>
+        </div>
+        <div class="row-actions">
+          <a class="btn-admin btn-soft" href="../" target="_blank" rel="noopener">預覽網站</a>
+          <button class="btn-admin btn-soft" type="button" id="reloadBtn">重新載入</button>
+          <button class="btn-admin btn-primary" type="button" id="saveBtn">儲存並發布</button>
+          <button class="btn-admin btn-danger" type="button" id="logoutBtn">登出</button>
+        </div>
+      </div>
+      <p class="status" id="saveStatus"></p>
+      <div class="tabs" id="tabs">
+        <button type="button" data-tab="theme" class="active">顏色／圖片</button>
+        <button type="button" data-tab="copy">文案</button>
+        <button type="button" data-tab="contact">聯絡</button>
+        <button type="button" data-tab="packages">套餐</button>
+        <button type="button" data-tab="faq">常見問題</button>
+      </div>
+
+      <div id="tab-theme" class="tab-panel">
+        <div class="panel">
+          <h2>主題顏色</h2>
+          <div class="grid-2" id="themeFields"></div>
+        </div>
+        <div class="panel">
+          <h2>圖片路徑（相對網站根目錄）</h2>
+          <div class="field"><label>Logo</label><input type="text" data-path="images.logo"></div>
+          <div class="field"><label>OG 分享圖</label><input type="text" data-path="images.og"></div>
+          <p class="hint">如要換新圖，先把檔案放進 repo 的 <code>assets/</code>，再填路徑（例如 <code>assets/logo.png</code>）。</p>
+        </div>
+        <div class="panel">
+          <h2>SEO</h2>
+          <div class="field"><label>頁面標題</label><input type="text" data-path="meta.title"></div>
+          <div class="field"><label>描述</label><textarea data-path="meta.description"></textarea></div>
+        </div>
+      </div>
+
+      <div id="tab-copy" class="tab-panel hidden">
+        <div class="panel">
+          <h2>品牌</h2>
+          <div class="grid-2">
+            <div class="field"><label>中文名稱</label><input type="text" data-path="brand.zh"></div>
+            <div class="field"><label>英文名稱</label><input type="text" data-path="brand.en"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>首頁 Hero</h2>
+          <div class="field"><label>眉題</label><input type="text" data-path="hero.eyebrow"></div>
+          <div class="field"><label>主文</label><textarea data-path="hero.lede"></textarea></div>
+          <div class="field"><label>標籤（每行一項）</label><textarea id="heroChips"></textarea></div>
+        </div>
+        <div class="panel">
+          <h2>關於</h2>
+          <div class="field"><label>Kicker</label><input type="text" data-path="about.kicker"></div>
+          <div class="field"><label>標題（可用 &lt;br&gt;）</label><input type="text" data-path="about.headingHtml"></div>
+          <div class="field"><label>段落 1</label><textarea data-path="about.p1"></textarea></div>
+          <div class="field"><label>段落 2</label><textarea data-path="about.p2"></textarea></div>
+          <div class="field"><label>附註</label><textarea data-path="about.note"></textarea></div>
+        </div>
+        <div class="panel">
+          <h2>服務</h2>
+          <div class="field"><label>服務導語</label><textarea data-path="servicesLead"></textarea></div>
+          <div id="offersEditor"></div>
+          <div id="serviceCardsEditor"></div>
+        </div>
+        <div class="panel">
+          <h2>案例</h2>
+          <div class="field"><label>標題</label><input type="text" data-path="case.heading"></div>
+          <div class="field"><label>段落 1</label><textarea data-path="case.p1"></textarea></div>
+          <div class="field"><label>段落 2</label><textarea data-path="case.p2"></textarea></div>
+          <div class="field"><label>按鈕文字</label><input type="text" data-path="case.buttonLabel"></div>
+          <div class="field"><label>連結</label><input type="url" data-path="case.url"></div>
+          <div class="field"><label>卡片標籤</label><input type="text" data-path="case.cardTag"></div>
+          <div class="field"><label>卡片標題</label><input type="text" data-path="case.cardTitle"></div>
+          <div class="field"><label>卡片說明</label><textarea data-path="case.cardBody"></textarea></div>
+          <div class="field"><label>卡片網址文字</label><input type="text" data-path="case.cardUrlLabel"></div>
+        </div>
+        <div class="panel">
+          <h2>聯絡區／頁尾</h2>
+          <div class="field"><label>聯絡標題</label><input type="text" data-path="contactSection.heading"></div>
+          <div class="field"><label>聯絡說明</label><textarea data-path="contactSection.body"></textarea></div>
+          <div class="field"><label>頁尾簡介</label><textarea data-path="footerTag"></textarea></div>
+          <div class="field"><label>套餐導語</label><textarea data-path="pricingLead"></textarea></div>
+          <div class="field"><label>保養說明</label><textarea data-path="maintenanceNote"></textarea></div>
+        </div>
+      </div>
+
+      <div id="tab-contact" class="tab-panel hidden">
+        <div class="panel">
+          <h2>聯絡資料</h2>
+          <div class="field"><label>對外職稱</label><input type="text" data-path="contact.title"></div>
+          <div class="field"><label>電話數字（8 位本地，或連 852）</label><input type="text" data-path="contact.phoneDigits"></div>
+          <div class="field"><label>顯示格式</label><input type="text" data-path="contact.phoneDisplay"></div>
+          <div class="field"><label>WhatsApp 預設訊息</label><input type="text" data-path="contact.waDefaultText"></div>
+          <div class="field"><label>標語</label><input type="text" data-path="contact.tagline"></div>
+        </div>
+      </div>
+
+      <div id="tab-packages" class="tab-panel hidden">
+        <div class="panel">
+          <h2>套餐</h2>
+          <div id="packagesEditor"></div>
+        </div>
+      </div>
+
+      <div id="tab-faq" class="tab-panel hidden">
+        <div class="panel">
+          <h2>常見問題</h2>
+          <div id="faqEditor"></div>
+          <div class="row-actions">
+            <button class="btn-admin btn-soft" type="button" id="addFaqBtn">新增一題</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+(function () {
+  var OWNER = "eshopeasyhk";
+  var REPO = "eshop-easy";
+  var PATH = "data/site.json";
+  var BRANCH = "main";
+  var KEY = "eshop_admin_pat";
+  var data = null;
+  var sha = null;
+
+  var themeKeys = [
+    ["paper", "紙色 paper"],
+    ["sand", "沙色 sand"],
+    ["ink", "文字色 ink"],
+    ["teal", "主色 teal"],
+    ["tealDark", "主色深 tealDark"],
+    ["amber", "強調 amber"],
+    ["whatsapp", "WhatsApp"]
+  ];
+
+  function $(id) { return document.getElementById(id); }
+  function token() { return sessionStorage.getItem(KEY) || ""; }
+  function setStatus(el, msg, ok) {
+    el.textContent = msg || "";
+    el.className = "status" + (ok === true ? " ok" : ok === false ? " err" : "");
+  }
+  function getByPath(obj, path) {
+    return path.split(".").reduce(function (o, k) { return o == null ? undefined : o[k]; }, obj);
+  }
+  function setByPath(obj, path, value) {
+    var parts = path.split(".");
+    var cur = obj;
+    for (var i = 0; i < parts.length - 1; i++) {
+      if (!cur[parts[i]]) cur[parts[i]] = {};
+      cur = cur[parts[i]];
+    }
+    cur[parts[parts.length - 1]] = value;
+  }
+
+  function api(url, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({
+      Accept: "application/vnd.github+json",
+      Authorization: "Bearer " + token(),
+      "X-GitHub-Api-Version": "2022-11-28"
+    }, opts.headers || {});
+    return fetch(url, opts).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) {
+          var msg = (j && (j.message || j.error)) || ("HTTP " + r.status);
+          throw new Error(msg);
+        }
+        return j;
+      });
+    });
+  }
+
+  function showApp(show) {
+    $("loginView").classList.toggle("hidden", show);
+    $("appView").classList.toggle("hidden", !show);
+  }
+
+  function buildThemeFields() {
+    var box = $("themeFields");
+    box.innerHTML = themeKeys.map(function (pair) {
+      var k = pair[0], label = pair[1];
+      return '<div class="field"><label>' + label + '</label><div class="color-row">' +
+        '<input type="color" data-theme="' + k + '">' +
+        '<input type="text" data-theme-text="' + k + '" placeholder="#000000">' +
+        "</div></div>";
+    }).join("");
+  }
+
+  function bindPathInputs() {
+    document.querySelectorAll("[data-path]").forEach(function (el) {
+      var path = el.getAttribute("data-path");
+      var v = getByPath(data, path);
+      el.value = v == null ? "" : String(v);
+    });
+  }
+
+  function fillEditors() {
+    bindPathInputs();
+    themeKeys.forEach(function (pair) {
+      var k = pair[0];
+      var val = (data.theme && data.theme[k]) || "#000000";
+      var c = document.querySelector('[data-theme="' + k + '"]');
+      var t = document.querySelector('[data-theme-text="' + k + '"]');
+      if (c) c.value = /^#[0-9a-fA-F]{6}$/.test(val) ? val : "#000000";
+      if (t) t.value = val;
+    });
+    $("heroChips").value = ((data.hero && data.hero.chips) || []).join("\n");
+    renderListEditor("offersEditor", data.offers || [], ["title", "body"], "核心服務");
+    renderListEditor("serviceCardsEditor", data.serviceCards || [], ["title", "body"], "服務卡片");
+    renderPackages();
+    renderFaq();
+  }
+
+  function renderListEditor(id, arr, fields, title) {
+    var box = $(id);
+    box.innerHTML = "<h3 style='margin:0 0 .6rem;font-size:1rem'>" + title + "</h3>" + arr.map(function (item, i) {
+      return '<div class="pkg" data-list="' + id + '" data-i="' + i + '"><h3>#' + (i + 1) + "</h3>" +
+        fields.map(function (f) {
+          var isLong = f === "body";
+          return '<div class="field"><label>' + f + "</label>" +
+            (isLong ? '<textarea data-f="' + f + '">' : '<input type="text" data-f="' + f + '" value="') +
+            (isLong ? escapeHtml(item[f] || "") + "</textarea>" : escapeAttr(item[f] || "") + '">') +
+            "</div>";
+        }).join("") + "</div>";
+    }).join("");
+  }
+
+  function renderPackages() {
+    var box = $("packagesEditor");
+    var pkgs = data.packages || [];
+    box.innerHTML = pkgs.map(function (p, i) {
+      return '<div class="pkg" data-pkg="' + i + '">' +
+        "<h3>" + escapeHtml(p.nameZh || p.nameEn || ("套餐 " + (i + 1))) + "</h3>" +
+        '<div class="grid-2">' +
+        field("nameEn", p.nameEn) + field("nameZh", p.nameZh) +
+        field("price", p.price) + field("pricePrefix", p.pricePrefix || "") +
+        field("meta", p.meta) + field("badge", p.badge || "") +
+        '</div>' +
+        '<div class="field"><label>重點（每行一項）</label><textarea data-f="bullets">' + escapeHtml((p.bullets || []).join("\n")) + "</textarea></div>" +
+        '<div class="field"><label>WhatsApp 訊息</label><input type="text" data-f="waText" value="' + escapeAttr(p.waText || "") + '"></div>' +
+        '<label><input type="checkbox" data-f="featured"' + (p.featured ? " checked" : "") + "> 標示為重點套餐</label>" +
+        "</div>";
+    }).join("");
+    function field(name, val) {
+      return '<div class="field"><label>' + name + '</label><input type="text" data-f="' + name + '" value="' + escapeAttr(val || "") + '"></div>';
+    }
+  }
+
+  function renderFaq() {
+    var box = $("faqEditor");
+    box.innerHTML = (data.faq || []).map(function (item, i) {
+      return '<div class="faq-item" data-faq="' + i + '">' +
+        '<div class="field"><label>問題</label><input type="text" data-f="q" value="' + escapeAttr(item.q || "") + '"></div>' +
+        '<div class="field"><label>回答</label><textarea data-f="a">' + escapeHtml(item.a || "") + "</textarea></div>" +
+        '<button type="button" class="btn-admin btn-soft" data-del-faq="' + i + '">刪除此題</button>' +
+        "</div>";
+    }).join("");
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/"/g, "&quot;");
+  }
+
+  function collect() {
+    document.querySelectorAll("[data-path]").forEach(function (el) {
+      setByPath(data, el.getAttribute("data-path"), el.value);
+    });
+    if (!data.theme) data.theme = {};
+    themeKeys.forEach(function (pair) {
+      var k = pair[0];
+      var t = document.querySelector('[data-theme-text="' + k + '"]');
+      if (t && t.value.trim()) data.theme[k] = t.value.trim();
+    });
+    data.hero = data.hero || {};
+    data.hero.chips = $("heroChips").value.split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean);
+
+    ["offersEditor", "serviceCardsEditor"].forEach(function (id) {
+      var key = id === "offersEditor" ? "offers" : "serviceCards";
+      var nodes = document.querySelectorAll('[data-list="' + id + '"]');
+      data[key] = Array.prototype.map.call(nodes, function (node) {
+        var o = {};
+        node.querySelectorAll("[data-f]").forEach(function (inp) {
+          o[inp.getAttribute("data-f")] = inp.value;
+        });
+        return o;
+      });
+    });
+
+    data.packages = Array.prototype.map.call(document.querySelectorAll("[data-pkg]"), function (node) {
+      var o = { id: (data.packages && data.packages[node.getAttribute("data-pkg")] || {}).id || "" };
+      node.querySelectorAll("[data-f]").forEach(function (inp) {
+        var f = inp.getAttribute("data-f");
+        if (f === "featured") o.featured = inp.checked;
+        else if (f === "bullets") o.bullets = inp.value.split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean);
+        else o[f] = inp.value;
+      });
+      if (!o.badge) delete o.badge;
+      if (!o.pricePrefix) o.pricePrefix = "";
+      return o;
+    });
+
+    data.faq = Array.prototype.map.call(document.querySelectorAll("[data-faq]"), function (node) {
+      return {
+        q: (node.querySelector('[data-f="q"]') || {}).value || "",
+        a: (node.querySelector('[data-f="a"]') || {}).value || ""
+      };
+    });
+  }
+
+  function loadContent() {
+    setStatus($("saveStatus"), "載入中…");
+    return api("https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + PATH + "?ref=" + BRANCH)
+      .then(function (file) {
+        sha = file.sha;
+        data = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g, "")))));
+        fillEditors();
+        setStatus($("saveStatus"), "已載入 data/site.json", true);
+      });
+  }
+
+  function saveContent() {
+    collect();
+    var json = JSON.stringify(data, null, 2) + "\n";
+    var content = btoa(unescape(encodeURIComponent(json)));
+    setStatus($("saveStatus"), "發布中…");
+    return api("https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + PATH, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: "Update site content via admin CMS",
+        content: content,
+        sha: sha,
+        branch: BRANCH
+      })
+    }).then(function (res) {
+      sha = res.content && res.content.sha;
+      setStatus($("saveStatus"), "已儲存並推上 GitHub。約 1–2 分鐘後網站會更新。", true);
+    });
+  }
+
+  function login() {
+    var t = $("token").value.trim();
+    if (!t) { setStatus($("loginStatus"), "請貼上 Token", false); return; }
+    sessionStorage.setItem(KEY, t);
+    setStatus($("loginStatus"), "驗證中…");
+    api("https://api.github.com/user")
+      .then(function (user) {
+        $("userLine").textContent = "已登入：" + (user.login || "") + " · 倉庫 " + OWNER + "/" + REPO;
+        showApp(true);
+        return loadContent();
+      })
+      .catch(function (err) {
+        sessionStorage.removeItem(KEY);
+        setStatus($("loginStatus"), "登入失敗：" + err.message, false);
+        showApp(false);
+      });
+  }
+
+  // events
+  buildThemeFields();
+  $("loginBtn").onclick = login;
+  $("logoutBtn").onclick = function () {
+    sessionStorage.removeItem(KEY);
+    showApp(false);
+    $("token").value = "";
+    setStatus($("loginStatus"), "已登出");
+  };
+  $("reloadBtn").onclick = function () {
+    loadContent().catch(function (e) { setStatus($("saveStatus"), e.message, false); });
+  };
+  $("saveBtn").onclick = function () {
+    saveContent().catch(function (e) { setStatus($("saveStatus"), "儲存失敗：" + e.message, false); });
+  };
+  $("addFaqBtn").onclick = function () {
+    collect();
+    data.faq = data.faq || [];
+    data.faq.push({ q: "新問題", a: "請填寫回答" });
+    renderFaq();
+  };
+  $("faqEditor").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-del-faq]");
+    if (!btn) return;
+    collect();
+    var i = +btn.getAttribute("data-del-faq");
+    data.faq.splice(i, 1);
+    renderFaq();
+  });
+  document.getElementById("themeFields").addEventListener("input", function (e) {
+    var c = e.target.getAttribute("data-theme");
+    if (c) {
+      var t = document.querySelector('[data-theme-text="' + c + '"]');
+      if (t) t.value = e.target.value;
+    }
+  });
+  document.getElementById("tabs").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-tab]");
+    if (!btn) return;
+    var tab = btn.getAttribute("data-tab");
+    document.querySelectorAll("#tabs button").forEach(function (b) { b.classList.toggle("active", b === btn); });
+    document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.add("hidden"); });
+    $("tab-" + tab).classList.remove("hidden");
+  });
+
+  if (token()) {
+    showApp(true);
+    api("https://api.github.com/user").then(function (user) {
+      $("userLine").textContent = "已登入：" + (user.login || "") + " · 倉庫 " + OWNER + "/" + REPO;
+      return loadContent();
+    }).catch(function () {
+      sessionStorage.removeItem(KEY);
+      showApp(false);
+    });
+  }
+})();
+</script>
+</body>
+</html>

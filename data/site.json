@@ -1,0 +1,190 @@
+{
+  "brand": {
+    "zh": "電商易",
+    "en": "EshopEasy"
+  },
+  "theme": {
+    "paper": "#f4f0e8",
+    "sand": "#e8e2d4",
+    "ink": "#12262e",
+    "teal": "#0f6d66",
+    "tealDark": "#0a4f4a",
+    "amber": "#c9892a",
+    "whatsapp": "#128c7e"
+  },
+  "images": {
+    "logo": "assets/logo.png",
+    "og": "assets/og.png"
+  },
+  "meta": {
+    "title": "電商易 EshopEasy｜香港中小企網站及 iOS App",
+    "description": "電商易（EshopEasy）為香港商戶及中小企業提供網站設計與建構，以及 iOS App 設計、製作及上架服務。收費公開，歡迎 WhatsApp 查詢。"
+  },
+  "contact": {
+    "title": "電商易技術顧問",
+    "phoneDigits": "46726613",
+    "phoneDisplay": "4672 6613",
+    "waDefaultText": "您好，想了解電商易服務",
+    "tagline": "香港 · 中小企網站及 iOS App"
+  },
+  "hero": {
+    "eyebrow": "Hong Kong · 中小企網站及 iOS App",
+    "lede": "為本地商戶及中小企業建立網上門面——介紹、聯絡、預約或下單，並提供 iOS App 設計、製作及上架。不局限於狹義網店；讓客戶能夠找到您、了解您，並即時聯絡。",
+    "chips": [
+      "網站設計與建構",
+      "iOS App 設計及上架",
+      "WhatsApp 直接查詢"
+    ]
+  },
+  "about": {
+    "kicker": "Why EshopEasy",
+    "headingHtml": "您專注經營，<br>我們負責上線。",
+    "p1": "電商易為香港的專業服務，專注為本地商戶及中小企業建立網上門面與流動應用。核心服務為網站設計與建構，以及 iOS App 設計、製作及上架，兩者並重，可獨立委託或一併進行。",
+    "p2": "電商易技術顧問親自洽談並跟進進度。製作採用現代工具以加快交付，實事求是，不會堆砌您無需使用的功能。",
+    "note": "網站涵蓋形象介紹、商務網站、預約及網店；iOS App 則包括設計、製作及 App Store 上架。"
+  },
+  "servicesLead": "兩項核心服務並重：網站設計與建構，以及 iOS App 設計、製作及上架。",
+  "offers": [
+    {
+      "title": "網站設計與建構",
+      "body": "由形象介紹、商務網站，以至預約及網店，為商戶建立清晰、可用的網上門面。"
+    },
+    {
+      "title": "iOS App 設計、製作及上架服務",
+      "body": "涵蓋設計、製作及 App Store 上架，可獨立委託，亦可與網站一併進行。視專案複雜程度面議，價格低至 HK$24,800。"
+    }
+  ],
+  "serviceCards": [
+    {
+      "title": "形象網站",
+      "body": "1–5 頁，清楚說明業務內容、地址及聯絡方式。適合剛起步，或只需一個整潔的網上門面。製作費 HK$3,800。"
+    },
+    {
+      "title": "商務網站",
+      "body": "8–12 頁，加入基本 SEO 及 WhatsApp 按鈕。適合已有穩定業務、希望客戶於網上找到您的商戶。製作費 HK$9,800。"
+    },
+    {
+      "title": "網店／預約",
+      "body": "產品目錄、價格、下單，或預約時段。製作費 HK$19,800。"
+    },
+    {
+      "title": "每月保養",
+      "body": "輕微文字及聯絡資料修訂、備份、保安更新。HK$280–480／月，確保網站持續有人維護。"
+    }
+  ],
+  "pricingLead": "以下為製作費，以港幣計算。域名、獨立主機或金流如需另行安排，將事先說明再報價。",
+  "packages": [
+    {
+      "id": "starter",
+      "nameEn": "Starter",
+      "nameZh": "形象網站",
+      "price": "3,800",
+      "pricePrefix": "",
+      "meta": "1–5 頁",
+      "featured": false,
+      "bullets": [
+        "流動裝置優先版面",
+        "服務／介紹內容",
+        "WhatsApp 聯絡",
+        "上線及基本教學"
+      ],
+      "waText": "您好，想查詢 Starter 形象網站 HK$3800"
+    },
+    {
+      "id": "business",
+      "nameEn": "Business",
+      "nameZh": "商務網站",
+      "price": "9,800",
+      "pricePrefix": "",
+      "meta": "8–12 頁 · 基本 SEO · WhatsApp",
+      "featured": true,
+      "badge": "最常查詢",
+      "bullets": [
+        "完整結構及導覽",
+        "基本搜尋引擎設定",
+        "WhatsApp 即時查詢",
+        "適合穩定經營的店舖"
+      ],
+      "waText": "您好，想查詢 Business 商務網站 HK$9800"
+    },
+    {
+      "id": "shop",
+      "nameEn": "Shop / Booking",
+      "nameZh": "網店／預約",
+      "price": "19,800",
+      "pricePrefix": "",
+      "meta": "產品目錄 · 下單或預約",
+      "featured": false,
+      "bullets": [
+        "產品或服務目錄",
+        "下單或預約時段",
+        "按您店舖的實際做法製作",
+        "金流／系統另議"
+      ],
+      "waText": "您好，想查詢網店／預約 HK$19800"
+    },
+    {
+      "id": "ios",
+      "nameEn": "iOS App",
+      "nameZh": "iOS 應用程式",
+      "price": "24,800",
+      "pricePrefix": "低至",
+      "meta": "視專案複雜程度面議",
+      "featured": false,
+      "bullets": [
+        "介面設計",
+        "應用程式製作",
+        "App Store 上架",
+        "可獨立委託或與網站一併進行"
+      ],
+      "waText": "您好，想查詢 iOS App 設計、製作及上架，價格低至 HK$24800"
+    }
+  ],
+  "maintenanceNote": "每月保養 HK$280–480。輕微修訂、備份、保安更新。",
+  "case": {
+    "heading": "真實案例",
+    "p1": "目前公開可閱覽的項目，為觀塘門市 Wonderland JP 網站：日本時裝零售，載有門市資料、分類及 WhatsApp 查詢。",
+    "p2": "此為已上線的商戶網站，並非示範稿。其他客戶個案尚未公開，故不展示虛構案例或評價。",
+    "buttonLabel": "開啟 Wonderland JP",
+    "url": "https://wonderlandjpjp.com",
+    "cardTag": "Merchant site",
+    "cardTitle": "Wonderland JP",
+    "cardBody": "觀塘日本流行時裝・代購門市網站。靜態頁面、流動裝置優先、WhatsApp 即時查詢。",
+    "cardUrlLabel": "wonderlandjpjp.com"
+  },
+  "faq": [
+    {
+      "q": "需要多少時間才可預覽？",
+      "a": "視乎頁數及您提供資料的速度。簡單形象網站，資料齊全時通常於數個工作天內備妥初稿；商務網站、網店／預約或 iOS App 需時較長。確實日程於洽談需求後確定，不會隨意承諾期限。"
+    },
+    {
+      "q": "套餐是否包括域名及空間？",
+      "a": "套餐價格為設計及製作。域名、獨立主機或商店金流如需另行安排，將事先說明再報價。可先以 GitHub Pages 上線，以降低起步成本。"
+    },
+    {
+      "q": "各套餐收費如何？",
+      "a": "形象網站 HK$3,800；商務網站 HK$9,800；網店／預約 HK$19,800。iOS App 視專案複雜程度面議，價格低至 HK$24,800，涵蓋設計、製作及上架。每月保養 HK$280–480。"
+    },
+    {
+      "q": "是否必須製作網店？",
+      "a": "不必。不少商戶首先需要的是清晰的網上門面：地址、服務、價格、WhatsApp。網店及預約可按實際需要加入。"
+    },
+    {
+      "q": "日後可否自行修改文字及圖片？",
+      "a": "輕微修訂可交由每月保養處理，或使用本站內容後台。較大改動或新增功能，將先報價再進行。"
+    },
+    {
+      "q": "是否提供 iOS App 服務？",
+      "a": "提供。iOS App 涵蓋設計、製作及上架，可獨立委託，亦可與網站一併進行。視專案複雜程度面議，價格低至 HK$24,800。"
+    },
+    {
+      "q": "如何開始？",
+      "a": "WhatsApp 4672 6613，說明您的業務，以及希望網站或 App 協助解決的事項。電商易技術顧問將直接回覆。"
+    }
+  ],
+  "contactSection": {
+    "heading": "歡迎聯絡",
+    "body": "無需填寫表格。請說明您的業務、現有網站或 App 情況，以及期望達成的目標。"
+  },
+  "footerTag": "香港中小企網站及 iOS App 服務。網站設計與建構，以及 iOS App 設計、製作及上架。"
+}
