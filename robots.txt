@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eshopeasyhk.github.io/eshop-easy/sitemap.xml
