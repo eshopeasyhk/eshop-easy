@@ -170,6 +170,33 @@
       .join("");
   }
 
+  
+  function renderCases(cases) {
+    var el = document.querySelector("[data-cms='cases']");
+    if (!el || !cases || !cases.length) return;
+    el.innerHTML = cases
+      .map(function (c) {
+        var demoClass = c.demo ? " work-card-demo" : "";
+        return (
+          '<a class="work-card' +
+          demoClass +
+          '" href="' +
+          escapeAttr(c.url || "#") +
+          '" rel="noopener noreferrer" target="_blank">' +
+          '<p class="work-tag">' +
+          escapeHtml(c.tag || "") +
+          "</p><h3>" +
+          escapeHtml(c.title || "") +
+          "</h3><p>" +
+          escapeHtml(c.body || "") +
+          '</p><p class="work-url">' +
+          escapeHtml(c.urlLabel || "") +
+          "</p></a>"
+        );
+      })
+      .join("");
+  }
+
   function renderFaq(faq) {
     var box = document.querySelector("[data-cms='faq']");
     if (!box || !faq || !faq.length) return;
@@ -292,6 +319,7 @@
       setText("[data-cms='caseCardBody']", data.case.cardBody);
       setText("[data-cms='caseCardUrl']", data.case.cardUrlLabel);
     }
+    renderCases(data.cases);
     renderFaq(data.faq);
     if (data.contactSection) {
       setText("[data-cms='contactHeading']", data.contactSection.heading);

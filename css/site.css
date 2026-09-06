@@ -1184,3 +1184,26 @@ a { text-decoration: none; }
   }
   .v-label { display: none; }
 }
+
+
+/* work cards grid */
+.work-intro { max-width: 40rem; margin-bottom: 1.5rem; }
+.work-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 800px) {
+  .work-cards { grid-template-columns: 1fr 1fr; }
+}
+.work-cards .work-card {
+  display: block;
+  color: inherit;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.work-cards .work-card:hover {
+  transform: translateY(-2px);
+}
+.work-card-demo .work-tag {
+  color: var(--teal-dark);
+}
