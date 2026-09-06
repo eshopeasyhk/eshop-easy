@@ -78,8 +78,8 @@
       "id": "starter",
       "nameEn": "Starter",
       "nameZh": "形象網站",
-      "price": "3,800HKD",
-      "pricePrefix": "4,800HKD",
+      "price": "3,800",
+      "pricePrefix": "",
       "meta": "1–5 頁",
       "bullets": [
         "流動裝置優先版面",
@@ -88,7 +88,7 @@
         "上線及基本教學"
       ],
       "waText": "您好，想查詢 Starter 形象網站 HK$3800",
-      "featured": false
+      "featured": true
     },
     {
       "id": "business",
@@ -100,12 +100,13 @@
       "badge": "最常查詢",
       "bullets": [
         "完整結構及導覽",
+        "提供後台登入，可隨時自行調整內容",
         "基本搜尋引擎設定",
         "WhatsApp 即時查詢",
         "適合穩定經營的店舖"
       ],
       "waText": "您好，想查詢 Business 商務網站 HK$9800",
-      "featured": true
+      "featured": false
     },
     {
       "id": "shop",
