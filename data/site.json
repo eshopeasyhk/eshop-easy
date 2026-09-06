@@ -146,13 +146,13 @@
   "maintenanceNote": "每月保養 HK$280–480。輕微修訂、備份、保安更新。",
   "case": {
     "heading": "案例與樣板",
-    "p1": "以下包括已上線商戶網站，以及電商易製作的行業樣板示範，方便您了解不同業態的網站結構。",
+    "p1": "以下包括已上線商戶網站，以及電商易製作的行業樣板示範，方便您了解不同業態與套餐定位。",
     "p2": "標示「樣板示範」者為虛構品牌，僅供展示版面與功能，並非已簽約客戶。",
     "buttonLabel": "開啟 Wonderland JP",
     "url": "https://wonderlandjpjp.com",
-    "cardTag": "Merchant site",
+    "cardTag": "網店／預約 · HK$19,800",
     "cardTitle": "Wonderland JP",
-    "cardBody": "觀塘日本流行時裝・代購門市網站。靜態頁面、流動裝置優先、WhatsApp 即時查詢。",
+    "cardBody": "真實案例｜網店價錢定位。觀塘日本流行時裝・代購門市網站：產品目錄、流動裝置優先、WhatsApp 即時查詢。",
     "cardUrlLabel": "wonderlandjpjp.com"
   },
   "faq": [
@@ -192,17 +192,17 @@
   "footerTag": "香港中小企網站及 iOS App 服務。網站設計與建構，以及 iOS App 設計、製作及上架。",
   "cases": [
     {
-      "tag": "Merchant site",
+      "tag": "真實案例 · 網店／預約",
       "title": "Wonderland JP",
-      "body": "觀塘日本流行時裝・代購門市網站。靜態頁面、流動裝置優先、WhatsApp 即時查詢。",
+      "body": "網店價錢定位（HK$19,800 級）。觀塘日本流行時裝・代購門市：產品目錄、流動裝置優先、WhatsApp 即時查詢。",
       "urlLabel": "wonderlandjpjp.com",
       "url": "https://wonderlandjpjp.com",
       "demo": false
     },
     {
-      "tag": "樣板示範",
+      "tag": "樣板示範 · Starter",
       "title": "FitForge Studio｜健身教練",
-      "body": "虛構品牌行業樣板：私人教練／團體班／拳擊泰拳套餐、營養顧問加購、前後對比示範與 WhatsApp 查詢。非真實營業、非已簽約客戶。",
+      "body": "Starter 形象網站樣板（HK$3,800 級）。虛構品牌：私人教練／團體班／拳擊泰拳套餐、營養顧問加購、前後對比示範與 WhatsApp 查詢。非真實營業、非已簽約客戶。",
       "urlLabel": "eshopeasyhk.github.io/fitness-coach-demo",
       "url": "https://eshopeasyhk.github.io/fitness-coach-demo/",
       "demo": true
